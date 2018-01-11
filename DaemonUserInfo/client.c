@@ -17,13 +17,6 @@
 
 #define PID_UID_MAX 32768
 
-/* GLOBALS, nous avons besoin de ses états dans
- * l'appel des signaux.
- */
-int fifo_fd;
-char *shm_name;
-char *sem_name;
-
 int main(void) {
     manage_client_signals();
 
@@ -31,7 +24,7 @@ int main(void) {
     init_client(id);
     greet_user(id);
     free(id);
-    
+
     char *shm = project_new_shm(shm_name, SIZE_FIXE_SHM);
     sem_t *sem = init_sem(sem_name, 0);
 
